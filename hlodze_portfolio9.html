@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hlodze Prince Kwaku Edem — Portfolio (Firebase)</title>
+  <meta name="description" content="Portfolio — Hlodze Prince Kwaku Edem" />
+  <style>
+    :root{--accent:#1e63d6;--bg:#0b1220;--card:#0f1724;--muted:#9aa4b2;--radius:12px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#e6eef8;background:linear-gradient(180deg,#061018,#071226)}
+    .topbar{background:rgba(6,18,30,0.6);backdrop-filter:blur(6px);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+    .contact a{color:var(--accent);text-decoration:none;font-weight:700}
+    .container{max-width:1100px;margin:28px auto;padding:16px}
+    .hero{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:24px;display:flex;gap:20px;align-items:center}
+    .avatar{width:140px;height:140px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#0b2138,#082033);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    h1{margin:0;font-size:22px}
+    p.lead{color:var(--muted);margin:6px 0 0}
+    nav{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+    .tab{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .tab.active{background:linear-gradient(90deg,var(--accent),#4aa3ff);color:#071226;border:none}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .section h3{margin:0 0 12px}
+    .media-grid{display:flex;flex-wrap:wrap;gap:10px}
+    .media-item{width:120px;height:80px;border-radius:8px;overflow:hidden;background:#071226;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center}
+    .small-list{list-style:none;padding:0;margin:0;color:var(--muted)}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:var(--accent);color:#071226;text-decoration:none;font-weight:700}
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}.avatar{width:120px;height:120px}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div style="font-weight:700">Contact: <a id="emailLink" href="mailto:kwakuedemhlodzeprince@gmail.com">kwakuedemhlodzeprince@gmail.com</a></div>
+    <div class="contact">
+      <a id="whatsappBtn" class="btn" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <div class="avatar" id="mainAvatar"><img id="avatarImg" src="https://via.placeholder.com/400x400.png?text=Profile" alt="profile"></div>
+      <div>
+        <h1 id="fullName">HLODZE PRINCE KWAKU EDEM</h1>
+        <p class="lead" id="tagline">Engineer | Innovator | Leader</p>
+        <nav id="tabs">
+          <button class="tab active" data-target="profile">Profile</button>
+          <button class="tab" data-target="achievements">Achievements</button>
+          <button class="tab" data-target="education">Education</button>
+          <button class="tab" data-target="positions">Positions</button>
+          <button class="tab" data-target="projects">Projects</button>
+          <button class="tab" data-target="cv">CV</button>
+          <button class="tab" data-target="vision">Vision</button>
+          <button class="tab" data-target="places">Places Worked At</button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card section" id="profile">
+          <h3>Profile</h3>
+          <p id="intro">Loading profile…</p>
+          <ul class="small-list" id="profileList"></ul>
+        </section>
+
+        <section class="card section" id="achievements" style="display:none">
+          <h3>Achievements</h3>
+          <div id="achieveGrid" class="media-grid">Loading…</div>
+        </section>
+
+        <section class="card section" id="education" style="display:none">
+          <h3>Education</h3>
+          <div id="eduList">Loading…</div>
+        </section>
+
+        <section class="card section" id="positions" style="display:none">
+          <h3>Positions Held</h3>
+          <div id="positionsList">Loading…</div>
+        </section>
+
+        <section class="card section" id="projects" style="display:none">
+          <h3>Projects</h3>
+          <div id="projectGrid" class="media-grid">Loading…</div>
+        </section>
+
+        <section class="card section" id="cv" style="display:none">
+          <h3>Curriculum Vitae</h3>
+          <p id="cvArea">Loading…</p>
+          <a id="cvDownload" class="btn" target="_blank" rel="noopener" style="display:none">Download CV</a>
+        </section>
+
+        <section class="card section" id="vision" style="display:none">
+          <h3>Vision</h3>
+          <div id="visionText">Loading…</div>
+        </section>
+
+        <section class="card section" id="places" style="display:none">
+          <h3>Places Worked At</h3>
+          <div id="placeList">Loading…</div>
+        </section>
+
+        <footer class="card" style="margin-top:12px">This site reads content from Firebase (read-only for visitors). To edit content go to the Firebase Console &gt; Firestore / Storage.</footer>
+      </main>
+
+      <aside>
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <img id="sideAvatar" src="https://via.placeholder.com/160x160.png?text=Profile" alt="avatar" style="width:72px;height:72px;border-radius:10px;object-fit:cover">
+            <div>
+              <div id="sideName" style="font-weight:800">HLODZE PRINCE KWAKU EDEM</div>
+              <div id="sideTag" style="color:var(--muted);font-size:13px">Engineer | Innovator | Leader</div>
+            </div>
+          </div>
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+          <div>
+            <strong>Contact</strong>
+            <ul style="padding-left:0;margin:8px 0;list-style:none;color:var(--muted)">
+              <li>Email: <a id="emailSide" href="mailto:kwakuedemhlodzeprince@gmail.com">kwakuedemhlodzeprince@gmail.com</a></li>
+              <li>WhatsApp: <a id="waSide" href="#">+233 59 589 3762</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // ====== Firebase config (you already provided this) ======
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js';
+    import { getFirestore, doc, getDoc, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+    import { getStorage, ref, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFAYM1sWkyfrS_MoYpnHLpQF6_c9DTJqw",
+      authDomain: "hlodze-portfolio.firebaseapp.com",
+      projectId: "hlodze-portfolio",
+      storageBucket: "hlodze-portfolio.firebasestorage.app",
+      messagingSenderId: "41626403349",
+      appId: "1:41626403349:web:6cd3dd06913d70b478c41c",
+      measurementId: "G-V3NE5H976S"
+    };
+
+    // Initialize
+    const app = initializeApp(firebaseConfig);
+    try{ getAnalytics(app); } catch(e){ /* analytics may fail on non-https */ }
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    // Utility: set WhatsApp link
+    const waNumberIntl = '233595893762';
+    document.getElementById('whatsappBtn').href = `https://wa.me/${waNumberIntl}`;
+    document.getElementById('waSide').href = `https://wa.me/${waNumberIntl}`;
+
+    // Fetch profile (collection: profile, doc: main)
+    async function loadProfile(){
+      const docRef = doc(db, 'profile', 'main');
+      const snap = await getDoc(docRef);
+      if(!snap.exists()){ console.warn('No profile doc found (profile/main)'); return; }
+      const data = snap.data();
+      document.getElementById('fullName').textContent = data.fullName || 'HLODZE PRINCE KWAKU EDEM';
+      document.getElementById('tagline').textContent = data.title || 'Engineer | Innovator | Leader';
+      document.getElementById('intro').textContent = data.bio || '';
+      document.getElementById('sideName').textContent = data.fullName || '';
+      document.getElementById('sideTag').textContent = data.title || '';
+      if(data.email){ document.getElementById('emailLink').href = `mailto:${data.email}`; document.getElementById('emailSide').href = `mailto:${data.email}`; document.getElementById('emailSide').textContent = data.email; }
+      if(data.whatsapp){ const wa = data.whatsapp.replace(/\D/g,''); document.getElementById('whatsappBtn').href = `https://wa.me/${wa}`; document.getElementById('waSide').href = `https://wa.me/${wa}`; }
+      // profile picture can be a direct URL or a storage path like 'profile/photo.jpg'
+      if(data.photoURL){
+        // if it looks like a storage path (no https), try to get download URL
+        if(!data.photoURL.startsWith('http')){
+          try{ const url = await getDownloadURL(ref(storage, data.photoURL)); document.getElementById('avatarImg').src = url; document.getElementById('sideAvatar').src = url; }catch(e){ console.warn('Failed to load profile photo from storage',e); }
+        } else { document.getElementById('avatarImg').src = data.photoURL; document.getElementById('sideAvatar').src = data.photoURL; }
+      }
+      // list other profile fields
+      const list = document.getElementById('profileList'); list.innerHTML='';
+      ['fullName','title','location','website'].forEach(k=>{ if(data[k] && k!=='fullName'){ const li = document.createElement('li'); li.innerHTML = `<strong>${k.charAt(0).toUpperCase()+k.slice(1)}:</strong> ${data[k]}`; list.appendChild(li); } });
+    }
+
+    // Achievements collection (achievements) -> fields: title, year, image (storage path or url)
+    async function loadAchievements(){
+      const col = collection(db, 'achievements');
+      const snaps = await getDocs(query(col, orderBy('year','desc')));
+      const out = document.getElementById('achieveGrid'); out.innerHTML='';
+      snaps.forEach(async s=>{
+        const it = s.data(); const div = document.createElement('div'); div.className='media-item';
+        if(it.image){ try{ const url = it.image.startsWith('http') ? it.image : await getDownloadURL(ref(storage, it.image)); const img = document.createElement('img'); img.src = url; div.appendChild(img);}catch(e){ div.textContent = it.title || 'Award'; } } else div.textContent = it.title || 'Award';
+        out.appendChild(div);
+      });
+    }
+
+    // Education collection: fields school, years, image
+    async function loadEducation(){
+      const col = collection(db, 'education');
+      const snaps = await getDocs(col);
+      const out = document.getElementById('eduList'); out.innerHTML='';
+      snaps.forEach(async s=>{
+        const it = s.data(); const row = document.createElement('div'); row.style.display='flex'; row.style.gap='12px'; row.style.alignItems='center'; row.style.padding='8px 0';
+        const logo = document.createElement('div'); logo.style.width='48px'; logo.style.height='48px'; logo.style.borderRadius='8px'; logo.style.overflow='hidden'; logo.style.background='#071226';
+        if(it.image){ try{ const url = it.image.startsWith('http') ? it.image : await getDownloadURL(ref(storage, it.image)); const img = document.createElement('img'); img.src = url; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover'; logo.appendChild(img);}catch(e){}}
+        const t = document.createElement('div'); t.innerHTML = `<strong>${it.school||''}</strong><br/><small style="color:var(--muted)">${it.years||''}</small>`;
+        row.appendChild(logo); row.appendChild(t); out.appendChild(row);
+      });
+    }
+
+    // Positions collection (positions) - each doc has role, start, end, description
+    async function loadPositions(){
+      const col = collection(db, 'positions');
+      const snaps = await getDocs(col);
+      const out = document.getElementById('positionsList'); out.innerHTML='';
+      snaps.forEach(s=>{ const it=s.data(); const d=document.createElement('div'); d.style.padding='8px 0'; d.innerHTML=`<strong>${it.role||''}</strong> <div style="color:var(--muted)">${it.period||''}</div><div>${it.description||''}</div>`; out.appendChild(d); });
+    }
+
+    // Projects collection: name, description, media (storage path or url), type (image|video)
+    async function loadProjects(){
+      const col = collection(db, 'projects');
+      const snaps = await getDocs(col);
+      const out = document.getElementById('projectGrid'); out.innerHTML='';
+      snaps.forEach(async s=>{
+        const it = s.data(); const div = document.createElement('div'); div.className='media-item';
+        if(it.media){ try{ const url = it.media.startsWith('http') ? it.media : await getDownloadURL(ref(storage, it.media)); if((it.type||'').startsWith('video')){ const v=document.createElement('video'); v.src=url; v.controls=true; v.style.width='100%'; v.style.height='100%'; div.appendChild(v);} else { const img=document.createElement('img'); img.src=url; div.appendChild(img);} } catch(e){ div.textContent = it.name || 'Project'; } } else { div.textContent = it.name || 'Project'; }
+        out.appendChild(div);
+      });
+    }
+
+    // CV doc: collection 'cv' doc 'main' with field url (storage path or public URL)
+    async function loadCV(){
+      try{
+        const snap = await getDoc(doc(db,'cv','main'));
+        if(!snap.exists()) return document.getElementById('cvArea').textContent = 'No CV uploaded.';
+        const it = snap.data(); if(!it.url) return document.getElementById('cvArea').textContent='No CV URL set.';
+        let url = it.url; if(!url.startsWith('http')) url = await getDownloadURL(ref(storage,it.url));
+        document.getElementById('cvArea').innerHTML = `<div style="color:var(--muted)">${it.name||'Curriculum Vitae'}</div>`;
+        const a = document.getElementById('cvDownload'); a.href = url; a.style.display='inline-block';
+      }catch(e){ console.warn('cv load failed',e); }
+    }
+
+    // Vision: collection 'vision' doc 'main' field text
+    async function loadVision(){
+      const snap = await getDoc(doc(db,'vision','main'));
+      if(!snap.exists()) return document.getElementById('visionText').textContent = '';
+      document.getElementById('visionText').textContent = snap.data().text || '';
+    }
+
+    // Places worked at: collection 'places'
+    async function loadPlaces(){
+      const col = collection(db,'places'); const snaps = await getDocs(col); const out=document.getElementById('placeList'); out.innerHTML='';
+      snaps.forEach(async s=>{ const p=s.data(); const row=document.createElement('div'); row.style.display='flex'; row.style.alignItems='center'; row.style.gap='10px'; row.style.padding='8px 0'; const logo=document.createElement('div'); logo.style.width='48px'; logo.style.height='48px'; logo.style.borderRadius='8px'; logo.style.overflow='hidden'; logo.style.background='#071226'; if(p.image){ try{ const url = p.image.startsWith('http') ? p.image : await getDownloadURL(ref(storage,p.image)); const img=document.createElement('img'); img.src=url; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover'; logo.appendChild(img);}catch(e){} } const txt=document.createElement('div'); txt.innerHTML=`<strong>${p.company||''}</strong><div style="color:var(--muted)">${p.role||''} ${p.year?'- '+p.year:''}</div>`; row.appendChild(logo); row.appendChild(txt); out.appendChild(row); });
+    }
+
+    // Load everything on start
+    async function init(){
+      await loadProfile();
+      await Promise.all([loadAchievements(), loadEducation(), loadPositions(), loadProjects(), loadCV(), loadVision(), loadPlaces()]);
+    }
+    init().catch(e=>console.error(e));
+
+    // Tab navigation (view-only)
+    document.querySelectorAll('#tabs .tab').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#tabs .tab').forEach(t=>t.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.target;
+        document.querySelectorAll('main .section').forEach(s=>s.style.display='none');
+        const el = document.getElementById(target);
+        if(el) el.style.display='block';
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+
+  </script>
+</body>
+</html>
